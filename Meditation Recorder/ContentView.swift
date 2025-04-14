@@ -13,18 +13,27 @@ struct ContentView: View {
     @State var showAlert = false
     
     var body: some View {
-        Button("Record", systemImage: "record.circle") {
-            self.showAlert.toggle()
-        }.alert(isPresented: $showAlert) { () -> Alert in
-            Alert(
-                title: Text("Do you want to record a meditation session of \(healthViewModel.meditationDuration) minutes?"),
-                primaryButton: .default(Text("Yes"), action: {
-                    healthViewModel.recordMeditationSession()
-                }),
-                secondaryButton: .cancel())
+        VStack(spacing: 30) {
+            Image(systemName: "apple.meditate" )
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .foregroundStyle(Color(red: 0.2, green: 0.8, blue: 0.2))
+                .frame(width: 75, height: 75)
+            Button("Record", systemImage: "record.circle") {
+                self.showAlert.toggle()
+            }.alert(isPresented: $showAlert) { () -> Alert in
+                Alert(
+                    title: Text("Do you want to record a meditation session of \(healthViewModel.meditationDuration) minutes?"),
+                    primaryButton: .default(Text("Yes"), action: {
+                        healthViewModel.recordMeditationSession()
+                    }),
+                    secondaryButton: .cancel())
+            }
+            .tint(.red)
+            .font(.largeTitle)
+            
         }
-        .tint(.red)
-        .font(.largeTitle)
+        .symbolEffect(.breathe)
         .onAppear {
             healthViewModel.requestAuthorization()
         }
