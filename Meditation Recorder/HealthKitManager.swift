@@ -29,5 +29,28 @@ class HealthKitManager {
         }
     }
     
-    
+    func recordMeditationSession(duration meditationDuration: Int,
+                                 mindfulType: HKCategoryType? = HKObjectType.categoryType(forIdentifier: .mindfulSession)) {
+        guard let mindfulType else { return }
+        
+        let endDate = Date()
+        let startDate = Calendar.current.date(
+            byAdding: .minute,
+            value: -meditationDuration,
+            to: endDate)!
+        
+        /* The duration of mindful minutes is described by its start and end,
+         while the value is simply filled with the value 0. */
+        let sample = HKCategorySample(
+            type: mindfulType,
+            value: 0,
+            start: startDate,
+            end: endDate)
+        
+        healthStore.save(sample) { success, error in
+            print("Success \(success)")
+            print("Error \(error)")
+        }
+        
+    }
 }

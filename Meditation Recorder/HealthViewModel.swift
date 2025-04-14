@@ -14,10 +14,6 @@ class HealthViewModel: ObservableObject {
     }
     
     func recordMeditationSession() {
-        let endDate = Date()
-        let startDate = Calendar.current.date(
-            byAdding: .minute,
-            value: -meditationDuration,
-            to: endDate)!
+        HealthKitManager.shared.recordMeditationSession(duration: meditationDuration)
     }
 }
