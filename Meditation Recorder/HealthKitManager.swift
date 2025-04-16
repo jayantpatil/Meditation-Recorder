@@ -30,10 +30,11 @@ class HealthKitManager {
     }
     
     func recordMeditationSession(duration meditationDuration: Int,
+                                 endDate: Date = Date(),
                                  mindfulType: HKCategoryType? = HKObjectType.categoryType(forIdentifier: .mindfulSession)) {
         guard let mindfulType else { return }
         
-        let endDate = Date()
+        let endDate = endDate
         let startDate = Calendar.current.date(
             byAdding: .minute,
             value: -meditationDuration,

@@ -14,6 +14,22 @@ struct ContentView: View {
     
     var body: some View {
         VStack(spacing: 30) {
+            VStack(alignment: .trailing) {
+                Text("Start Time \(healthViewModel.startDate.formatted(date: .abbreviated, time: .standard))")
+                
+                Text("End Time \(healthViewModel.endDate.formatted(date: .abbreviated, time: .standard))")
+                
+                Text("Duration \(healthViewModel.meditationDuration) minutes")
+            }
+            .foregroundStyle(.gray)
+            .padding()
+            .overlay(
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(style: StrokeStyle(lineWidth: 2, dash: [5])) // Dotted border
+                    .foregroundColor(.mint) // Border color
+            )
+            .padding()
+            
             Image(systemName: "apple.meditate" )
                 .resizable()
                 .aspectRatio(contentMode: .fit)
