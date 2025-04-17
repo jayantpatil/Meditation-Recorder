@@ -18,6 +18,11 @@ class HealthViewModel {
             to: endDate)!
     }
     
+    func onChangeScenePhase() {
+        requestAuthorization()
+        updateEndDate()
+    }
+    
     func requestAuthorization() {
         HealthKitManager.shared.requestAuthorization()
     }

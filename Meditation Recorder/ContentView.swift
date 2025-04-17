@@ -11,6 +11,7 @@ import SwiftData
 struct ContentView: View {
     @State var healthViewModel: HealthViewModel
     @State var showAlert = false
+    @Environment(\.scenePhase) var scenePhase
     
     var body: some View {
         VStack(spacing: 30) {
@@ -50,8 +51,10 @@ struct ContentView: View {
             
         }
         .symbolEffect(.breathe)
-        .onAppear {
-            healthViewModel.requestAuthorization()
+        .onChange(of: scenePhase) {
+            if scenePhase == .active {
+                healthViewModel.onChangeScenePhase()
+            }
         }
     }
 }
