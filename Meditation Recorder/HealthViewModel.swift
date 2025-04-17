@@ -7,9 +7,10 @@
 
 import Foundation
 
-class HealthViewModel: ObservableObject {
+@Observable
+class HealthViewModel {
     let meditationDuration = 30
-    let endDate = Date()
+    var endDate = Date()
     var startDate: Date {
         Calendar.current.date(
             byAdding: .minute,
@@ -19,6 +20,10 @@ class HealthViewModel: ObservableObject {
     
     func requestAuthorization() {
         HealthKitManager.shared.requestAuthorization()
+    }
+    
+    func updateEndDate(_ date: Date = Date()) {
+        endDate = date
     }
     
     func recordMeditationSession() {

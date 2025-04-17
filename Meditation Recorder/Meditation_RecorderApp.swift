@@ -13,8 +13,7 @@ struct Meditation_RecorderApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environmentObject(HealthViewModel())
+            ContentView(healthViewModel: HealthViewModel())
         }
     }
 }

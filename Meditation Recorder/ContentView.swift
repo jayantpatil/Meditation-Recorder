@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
-    @EnvironmentObject var healthViewModel: HealthViewModel
+    @State var healthViewModel: HealthViewModel
     @State var showAlert = false
     
     var body: some View {
@@ -57,6 +57,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
-        .environmentObject(HealthViewModel())
+    ContentView(healthViewModel: HealthViewModel())
 }
